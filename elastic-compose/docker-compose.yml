@@ -46,6 +46,8 @@ services:
     hostname: kibana
     ports:
       - 5601:5601
+#    volumes:
+#      - ../elastic/kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml
     networks:
       - elastic-stack
     logging:
