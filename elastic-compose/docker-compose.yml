@@ -9,6 +9,8 @@ services:
 #      - 5044:5044 # filebeat port
     environment:
       - "config.reload.automatic=true"
+    volumes:
+      - ../elastic/logstash/pipeline/:/usr/share/logstash/pipeline/
     networks:
       - elastic-stack
     logging:
