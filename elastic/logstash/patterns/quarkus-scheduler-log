@@ -1,0 +1,4 @@
+LOG_LEV %{LOGLEVEL:loglevel}
+QUARKUSTHREAD \((?<thread>.*(?:[\s|-]*)[\d]*)\)
+
+QUARKUS_SCHEDULER_LOG ^%{TIMESTAMP_ISO8601:timestamp}\s+%{HOSTNAME:source.hostname}\s+%{JAVAFILE:module_filename}\[%{INT:pid}\]\s+%{LOG_LEV}\s+\[%{JAVACLASS:class}\]\s+%{QUARKUSTHREAD}\s+%{GREEDYDATA:data}
