@@ -11,6 +11,7 @@ services:
       - "config.reload.automatic=true"
     volumes:
       - ../elastic/logstash/pipeline/:/usr/share/logstash/pipeline/
+      - ${LOGSTASH_LOGS_SOURCE}:/opt/scheduler/
     networks:
       - elastic-stack
     logging:
