@@ -1,0 +1,61 @@
+version: '3.8'
+services:
+  logstash:
+    image: docker.elastic.co/logstash/logstash:7.15.2
+    container_name: logstash
+    hostname: logstash
+    ports:
+      - 9600:9600
+#      - 5044:5044 # filebeat port
+    environment:
+      - "config.reload.automatic=true"
+    networks:
+      - elastic-stack
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100M"
+        max-file: "5"
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.15.2
+    container_name: elasticsearch
+    hostname: elasticsearch
+    ports:
+      - 9200:9200
+    environment:
+      - "http.host=0.0.0.0"
+      - "transport.host=127.0.0.1"
+    volumes:
+      - esdata:/opt/elastic/elasticsearch/data
+    networks:
+      - elastic-stack
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100M"
+        max-file: "5"
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.15.2
+    container_name: kibana
+    hostname: kibana
+    ports:
+      - 5601:5601
+    networks:
+      - elastic-stack
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100M"
+        max-file: "5"
+
+volumes:
+  esdata:
+    name: esdata
+    driver: local
+
+networks:
+  elastic-stack:
+    name: elastic-stack
+
