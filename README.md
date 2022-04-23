@@ -1,5 +1,7 @@
 # elastic-stack-playground
 
+## Intro
+
 To start navigate to folder 'elastic-compose' and execute the command:
 
 docker-compose up -d
@@ -15,3 +17,8 @@ docker-compose --env-file .env.local config
 To check debug output into console of the running logstash container execute:
 
 docker logs -f logstash
+
+## Logs source
+
+As a source for log entries is a small project prepared:
+[edu.quarkus.scheduler](https://github.com/DoktorZ/edu.quarkus.scheduler)
